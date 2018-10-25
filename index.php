@@ -38,9 +38,9 @@ foreach ($events as $event) {
   $newMids = array();
   $newMids[] = $event->getUserId();
 　// 新規のユーザーの場合は追加
-  $mids = array_merge($newMids, $mids);
-  $mids = array_unique($mids);
-  file_put_contents($midFile, implode(",", $mids));
+  //$mids = array_merge($newMids, $mids);
+  //$mids = array_unique($mids);
+  //file_put_contents($midFile, implode(",", $mids));
   // メッセージを全登録ユーザーID宛にプッシュ
   foreach ($mids as $mid) {
     $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
