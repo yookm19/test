@@ -43,12 +43,20 @@ try {
 
 // // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
-	
-//   // テキストメッセージでなければ処理をスキップ
-//   if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
-//     error_log('Non message event has come');
-//     continue;
-//   }
+
+  // MessageEventクラスのインスタンスでなければ処理をスキップ
+  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
+    error_log('Non message event has come');
+    continue;
+  }
+    
+  // MessageEventクラスのインスタンスでなければ処理をスキップ
+  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
+    error_log('Non Text message event has come');
+    continue;
+  }
+
+  replyTextMessage($bot, $event->getReplyToken(), $event->getText());
 
 //   // メッセージを全登録ユーザーID宛にプッシュ
 //   foreach ($mids as $mid) {
@@ -58,14 +66,12 @@ foreach ($events as $event) {
     
 //   }
 
-replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
-
 }
 
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
 function replyTextMessage($bot, $replyToken, $text) {
-	// 返信を行ないレスポンスを取得
+	// 返信を行いレスポンスを取得
 	// TextMessageBuilderの引数はテキスト
 	$response = $bot->replymessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
 
