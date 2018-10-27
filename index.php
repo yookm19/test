@@ -48,10 +48,10 @@ foreach ($events as $event) {
 	// $bot->replyText($event->getReplyToken(), 'TextMessage');
 
   //  テキストメッセージでなければ処理をスキップ
-  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
-    error_log('Non message event has come');
-    continue;
-  }
+  // if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
+  //   error_log('Non message event has come');
+  //   continue;
+  // }
 
   // メッセージを全登録ユーザーID宛にプッシュ
   foreach ($mids as $mid) {
