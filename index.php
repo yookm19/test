@@ -44,6 +44,8 @@ try {
 // // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
 
+  error_log($event->getUserId());
+
   // MessageEventクラスのインスタンスでなければ処理をスキップ
   if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
     error_log('Non message event has come');
@@ -57,8 +59,6 @@ foreach ($events as $event) {
   }
 
   replyTextMessage($bot, $event->getReplyToken(), $event->getText());
-
-  error_log($event->getUserId());
 
 //   // メッセージを全登録ユーザーID宛にプッシュ
 //   foreach ($mids as $mid) {
