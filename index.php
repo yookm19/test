@@ -43,9 +43,7 @@ try {
 
 // // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
-	//テキストを返信
-	$bot->replyText($event->getReplyToken(), 'TextMessage');
-
+	
 //   // テキストメッセージでなければ処理をスキップ
 //   if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
 //     error_log('Non message event has come');
@@ -60,9 +58,10 @@ foreach ($events as $event) {
     
 //   }
 
+replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
+
 }
 
-replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
 function replyTextMessage($bot, $replyToken, $text) {
