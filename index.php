@@ -48,19 +48,19 @@ foreach ($events as $event) {
 	$bot->replyText($event->getReplyToken(), 'TextMessage');
 
   // テキストメッセージでなければ処理をスキップ
-  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
-    error_log('Non message event has come');
-    continue;
-  }
+  // if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
+  //   error_log('Non message event has come');
+  //   continue;
+  // }
 
   // メッセージを全登録ユーザーID宛にプッシュ
-  foreach ($mids as $mid) {
-    $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
-    // テキストを返信し次のイベントの処理へ
-	  replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
+  // foreach ($mids as $mid) {
+  //   $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
+  //   // テキストを返信し次のイベントの処理へ
+	//   replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
     
-  }
-	
+  // }
+
 }
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
