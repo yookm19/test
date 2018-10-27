@@ -25,20 +25,20 @@ try {
   error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
 }
 
-$midFile = __DIR__ . "/files/mids";
+// $midFile = __DIR__ . "/files/mids";
 
-// midsの中身を読み込み
-$mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
+// // midsの中身を読み込み
+// $mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
 
-// メッセージを送ってきたユーザーを取得
-$newMids = array();
-$newMids[] = $event->getUserId();
+// // メッセージを送ってきたユーザーを取得
+// $newMids = array();
+// $newMids[] = $event->getUserId();
 
-// 新規ユーザーの場合は追加
-$mids = array_merge($newMids, $mids);
-$mids = array_unique($mids);
+// // 新規ユーザーの場合は追加
+// $mids = array_merge($newMids, $mids);
+// $mids = array_unique($mids);
 
-file_put_contents($midFile, implode(",", $mids));
+// file_put_contents($midFile, implode(",", $mids));
 
 
 // // 配列に格納された各イベントをループで処理
@@ -57,6 +57,8 @@ foreach ($events as $event) {
   }
 
   replyTextMessage($bot, $event->getReplyToken(), $event->getText());
+
+  error_log($event->getUserId());
 
 //   // メッセージを全登録ユーザーID宛にプッシュ
 //   foreach ($mids as $mid) {
