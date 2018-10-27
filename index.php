@@ -14,17 +14,17 @@ $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader
 							
 // 署名が正当かチェック。正当であればリクエストをパースし配列へ
 // 不正であれば例外の内容を出力
-try {
+//try {
   $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
-} catch(\LINE\LINEBot\Exception\InvalidSignatureException $e) {
-  error_log('parseEventRequest failed. InvalidSignatureException => '.var_export($e, true));
-} catch(\LINE\LINEBot\Exception\UnknownEventTypeException $e) {
-  error_log('parseEventRequest failed. UnknownEventTypeException => '.var_export($e, true));
-} catch(\LINE\LINEBot\Exception\UnknownMessageTypeException $e) {
-  error_log('parseEventRequest failed. UnknownMessageTypeException => '.var_export($e, true));
-} catch(\LINE\LINEBot\Exception\InvalidEventRequestException $e) {
-  error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
-}
+// } catch(\LINE\LINEBot\Exception\InvalidSignatureException $e) {
+//   error_log('parseEventRequest failed. InvalidSignatureException => '.var_export($e, true));
+// } catch(\LINE\LINEBot\Exception\UnknownEventTypeException $e) {
+//   error_log('parseEventRequest failed. UnknownEventTypeException => '.var_export($e, true));
+// } catch(\LINE\LINEBot\Exception\UnknownMessageTypeException $e) {
+//   error_log('parseEventRequest failed. UnknownMessageTypeException => '.var_export($e, true));
+// } catch(\LINE\LINEBot\Exception\InvalidEventRequestException $e) {
+//   error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
+// }
 
 // $midFile = __DIR__ . "/files/mids";
 
