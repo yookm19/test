@@ -28,8 +28,7 @@ try {
 
 $midFile = __DIR__ . "/files/mids";
 
-// midsの中身を読み込み
-$mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
+// midsの中身を読み込み$mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
 
 
 // 配列に格納された各イベントをループで処理
@@ -47,7 +46,7 @@ foreach ($events as $event) {
   $newMids = array();
   $newMids[] = $event->getUserId();
 
-  // 新規ユーザーの場合は追加
+　// 新規のユーザーの場合は追加
   $mids = array_merge($newMids, $mids);
   $mids = array_unique($mids);
 
@@ -55,7 +54,7 @@ foreach ($events as $event) {
 
   // メッセージを全登録ユーザーID宛にプッシュ
   foreach ($mids as $mid) {
-    $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
+    // $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
     // テキストを返信し次のイベントの処理へ
 	replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
     
