@@ -45,19 +45,19 @@ file_put_contents($midFile, implode(",", $mids));
 // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
 	//テキストを返信
-	// $bot->replyText($event->getReplyToken(), 'TextMessage');
+	$bot->replyText($event->getReplyToken(), 'TextMessage');
 
-  //  テキストメッセージでなければ処理をスキップ
-  // if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
-  //   error_log('Non message event has come');
-  //   continue;
-  // }
+  // テキストメッセージでなければ処理をスキップ
+  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
+    error_log('Non message event has come');
+    continue;
+  }
 
   // メッセージを全登録ユーザーID宛にプッシュ
   foreach ($mids as $mid) {
     $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
     // テキストを返信し次のイベントの処理へ
-	  // replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
+	  replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
     
   }
 	
