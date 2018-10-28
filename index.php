@@ -56,9 +56,9 @@ foreach($json["result"] as $result){
   );
 }
 
-if(0 == count($messages)){
-  exit(0);
-}
+// if(0 == count($messages)){
+//   exit(0);
+// }
 
 // $newMids[] = $event->getUserId();
 
