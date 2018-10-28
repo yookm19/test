@@ -31,18 +31,45 @@ $midFile = __DIR__ . "/files/mids";
 $mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
 
 // メッセージを送ってきたユーザーを取得
-$events->getUserId();
-// $newMids = array($events->getUserId());
+$json = json_decode(file_get_contents("php://input"),true);
+$newMids = array();
+
+if(!isset($json["result"])){
+  exit(0);
+}
+
+foreach($json["result"] as $result){
+  $newmids[] = $result["content"]["from"];
+}
+
+$messages = array();
+foreach($json["result"] as $result){
+  if(!isset($result["content"]["text"])){
+    continue;
+  }
+  if(1 > strlen($result["content"]["text"])){
+    continue;
+  }
+  $messages[] = array(
+    "contentType" => 1,
+    "text" => $result["content"]["text"],
+  );
+}
+
+if(0 == count($messages)){
+  exit(0);
+}
+
 // $newMids[] = $event->getUserId();
 
 // // 新規ユーザーの場合は追加
-// $mids = array_merge($newMids, $mids);
-// $mids = array_unique($mids);
+$mids = array_merge($newMids, $mids);
+$mids = array_unique($mids);
 
-// file_put_contents($midFile, implode(",", $mids));
+file_put_contents($midFile, implode(PHP_EOL, $mids));
 
 
-// // 配列に格納された各イベントをループで処理
+// 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
 
   // error_log($event->getUserId());
