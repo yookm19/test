@@ -96,7 +96,7 @@ foreach ($events as $event) {
     
   // }
 
-  // $userId = $event->getUserId();
+  $userId = "Udeadbeefdeadbeefdeadbeefdeadbeef";
   // error_log($userId);
   pushTextMessage($bot, $userId, "Hello World!");
 
