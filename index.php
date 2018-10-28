@@ -97,7 +97,7 @@ foreach ($events as $event) {
   // }
 
   $userId = "Udeadbeefdeadbeefdeadbeefdeadbeef";
-  // error_log($userId);
+  error_log($userId);
   pushTextMessage($bot, $userId, "Hello World!");
 
   // $body = json_encode(
