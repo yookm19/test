@@ -31,8 +31,8 @@ $midFile = __DIR__ . "/files/mids";
 $mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
 
 // メッセージを送ってきたユーザーを取得
-$newMids = array();
-$newMids[] = $event->getUserId();
+$newMids = array($event->getUserId());
+// $newMids[] = $event->getUserId();
 
 // // 新規ユーザーの場合は追加
 // $mids = array_merge($newMids, $mids);
