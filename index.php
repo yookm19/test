@@ -96,7 +96,7 @@ foreach ($events as $event) {
     
   // }
 
-  pushTextMessage("U1bdfaf3b4dd64a494bf60a297b69307e", $event->getText());
+  //pushTextMessage("U1bdfaf3b4dd64a494bf60a297b69307e", $event->getText());
 
   // $body = json_encode(
   //   array(
