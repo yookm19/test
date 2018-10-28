@@ -94,6 +94,31 @@ foreach ($events as $event) {
     
   // }
 
+  $body = json_encode(
+    array(
+      "to" => array_values($mids),
+      "toChannel" => 1383378250,
+      "eventType" => $events,
+      "content" => array(
+        "messageNotified" => 0,
+        "messages" => $messages,
+      ),
+    )
+  );
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, "https://trial-api.line.me/v1/events");
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "Content-Type: application/json; charset=UTF-8",
+    "X-Line-ChannelID: 1616806503",
+    "X-Line-ChannelSecret: 4e84d3f2177af51fdb6d50a64fdfc58f",
+    "X-Line-Trusted-User-With-ACL: /Syc1LLNgaD9peKYbkWMSKoWZqei8OgEWB25aRS+8tHWZHECOL/qyORPmNlJ+YUodxQMX1Rl6oBwGsTQuA63PsDdfZTPkbTuaieMYVGrxinbzH/yVwCmN7C8HiRCnYwwYS+VINtw5m0g022Rd2PPxAdB04t89/1O/w1cDnyilFU=",
+  ));
+
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+  $result = curl_exec($ch);
+
 }
 
 
