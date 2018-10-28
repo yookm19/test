@@ -96,9 +96,9 @@ foreach ($events as $event) {
     
   // }
 
-  $userId = $event->getUserId();
-  error_log($userId);
-  pushTextMessage($userId, "Hello World!");
+  // $userId = $event->getUserId();
+  // error_log($userId);
+  pushTextMessage($bot, $userId, "Hello World!");
 
   // $body = json_encode(
   //   array(
@@ -142,10 +142,10 @@ function replyTextMessage($bot, $replyToken, $text) {
 }
 
 // テキストをプッシュ。引数はLINEBot、返信先、テキスト
-function pushTextMessage($userId, $text) {
+function pushTextMessage($bot, $userId, $text) {
 	// メッセージのプッシュを行いレスポンスを取得
 	// TextMessageBuilderの引数はテキスト
-	$response = $bot->pushmessage($userId, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+	$response = $bot->pushMessage($userId, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
 
 	// レスポンスが異常な場合
 	if(!$response->isSucceeded()) {
