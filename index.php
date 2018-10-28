@@ -85,16 +85,16 @@ foreach ($events as $event) {
     continue;
   }
 
-  // replyTextMessage($bot, $event->getReplyToken(), $event->getText());
+  replyTextMessage($bot, $event->getReplyToken(), $event->getText());
 
   // メッセージを全登録ユーザーID宛にプッシュ
-  foreach ($mids as $mid) {
-    echo $mids;
-    echo $mid;
-    // テキストを返信し次のイベントの処理へ
-	  pushTextMessage(array_values($mid), $event->getText());
+  // foreach ($mids as $mid) {
+  //   echo $mids;
+  //   echo $mid;
+  //   // テキストを返信し次のイベントの処理へ
+	//   pushTextMessage(array_values($mid), $event->getText());
     
-  }
+  // }
 
   pushTextMessage("U1bdfaf3b4dd64a494bf60a297b69307e", $event->getText());
 
