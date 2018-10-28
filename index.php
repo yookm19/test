@@ -65,7 +65,6 @@ foreach($json["result"] as $result){
 // // 新規ユーザーの場合は追加
 $mids = array_merge($newMids, $mids);
 $mids = array_unique($mids);
-
 file_put_contents($midFile, implode(PHP_EOL, $mids));
 
 
@@ -88,13 +87,13 @@ foreach ($events as $event) {
 
   replyTextMessage($bot, $event->getReplyToken(), $event->getText());
 
-//   // メッセージを全登録ユーザーID宛にプッシュ
-//   foreach ($mids as $mid) {
-//     $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
-//     // テキストを返信し次のイベントの処理へ
-// 	  replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
+  // メッセージを全登録ユーザーID宛にプッシュ
+  foreach ($mids as $mid) {
+    $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
+    // テキストを返信し次のイベントの処理へ
+	  replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
     
-//   }
+  }
 
 }
 
