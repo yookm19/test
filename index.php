@@ -85,13 +85,12 @@ foreach ($events as $event) {
     continue;
   }
 
-  replyTextMessage($bot, $event->getReplyToken(), $event->getText());
+  // replyTextMessage($bot, $event->getReplyToken(), $event->getText());
 
   // メッセージを全登録ユーザーID宛にプッシュ
   foreach ($mids as $mid) {
-    $response = $bot->pushMessage($mid, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getText()));
     // テキストを返信し次のイベントの処理へ
-	  replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
+	  pushTextMessage($mid, $event->getText());
     
   }
 
@@ -103,6 +102,19 @@ function replyTextMessage($bot, $replyToken, $text) {
 	// 返信を行いレスポンスを取得
 	// TextMessageBuilderの引数はテキスト
 	$response = $bot->replymessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+
+	// レスポンスが異常な場合
+	if(!$response->isSucceeded()) {
+		//エラー内容を出力
+		error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
+	}
+}
+
+// テキストをプッシュ。引数はLINEBot、返信先、テキスト
+function pushTextMessage($userId, $text) {
+	// メッセージのプッシュを行いレスポンスを取得
+	// TextMessageBuilderの引数はテキスト
+	$response = $bot->pushMessage($userId, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
 
 	// レスポンスが異常な場合
 	if(!$response->isSucceeded()) {
