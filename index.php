@@ -34,9 +34,9 @@ $mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
 $json = json_decode(file_get_contents("php://input"),true);
 $newMids = array();
 
-if(!isset($json["result"])){
-  exit(0);
-}
+// if(!isset($json["result"])){
+//   exit(0);
+// }
 
 foreach($json["result"] as $result){
   $newmids[] = $result["content"]["from"];
