@@ -25,10 +25,10 @@ try {
   error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
 }
 
-// $midFile = __DIR__ . "/files/mids";
+$midFile = __DIR__ . "/files/mids";
 
-// // midsの中身を読み込み
-// $mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
+// midsの中身を読み込み
+$mids = explode(PHP_EOL, trim(file_get_contents($midFile)));
 
 // // メッセージを送ってきたユーザーを取得
 // $newMids = array();
@@ -44,7 +44,7 @@ try {
 // // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
 
-  error_log($event->getUserId());
+  // error_log($event->getUserId());
 
   // MessageEventクラスのインスタンスでなければ処理をスキップ
   if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
