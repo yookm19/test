@@ -85,7 +85,7 @@ foreach ($events as $event) {
     continue;
   }
 
-  // replyTextMessage($bot, $event->getReplyToken(), $event->getText());
+  replyTextMessage($bot, $event->getReplyToken(), $event->getText());
 
   // メッセージを全登録ユーザーID宛にプッシュ
   foreach ($mids as $mid) {
