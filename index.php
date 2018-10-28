@@ -96,7 +96,8 @@ foreach ($events as $event) {
     
   // }
 
-  pushTextMessage("U1bdfaf3b4dd64a494bf60a297b69307e", "Hello World!");
+  $userId = $event->getUserId();
+  pushTextMessage($userId, "Hello World!");
 
   // $body = json_encode(
   //   array(
