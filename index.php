@@ -87,12 +87,12 @@ foreach ($events as $event) {
 
   replyTextMessage($bot, $event->getReplyToken(), $event->getText());
 
-  // メッセージを全登録ユーザーID宛にプッシュ
-  foreach ($mids as $mid) {
-    // テキストを返信し次のイベントの処理へ
-	  pushTextMessage($mid, $event->getText());
+  // // メッセージを全登録ユーザーID宛にプッシュ
+  // foreach ($mids as $mid) {
+  //   // テキストを返信し次のイベントの処理へ
+	//   pushTextMessage($mid, $event->getText());
     
-  }
+  // }
 
 }
 
