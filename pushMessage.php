@@ -16,7 +16,7 @@ $to = 'Udeadbeefdeadbeefdeadbeefdeadbeef';
 //Channel_Access_Token 
 $Channel_Access_Token = getenv('CHANNEL_ACCESS_TOKEN');
 
-$mes = 'テストメッセージです';
+$mes = 'test';
 
 $response_format = [ 
 "type" => "text", 
