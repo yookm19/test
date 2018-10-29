@@ -9,48 +9,44 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 
 $userId = 'Udeadbeefdeadbeefdeadbeefdeadbeef';
-// error_log($userId);
 
+$response = $bot->pushMessage('Udeadbeefdeadbeefdeadbeefdeadbeef', new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("Hello World!"));
+if(!$response->isSucceeded()) {
+	//エラー内容を出力
+	error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
+}
+
+
+// ---
+// $mes = 'test';
 //To 
-$to = 'U1bdfaf3b4dd64a494bf60a297b69307e'; 
+// $to = 'Udeadbeefdeadbeefdeadbeefdeadbeef'; 
 //Channel_Access_Token 
-$Channel_Access_Token = getenv('CHANNEL_ACCESS_TOKEN');
+// $Channel_Access_Token = getenv('CHANNEL_ACCESS_TOKEN');
+// $response_format = [ 
+// 	"type" => "text", 
+// 	"text" => $mes 
+// 	];
+	
+// 	$post_data = [ 
+// 	"to" => $to, 
+// 	"messages" => [$response_format] 
+// 	];
+	
+// 	//post 
+// 	$channel = curl_init("https://api.line.me/v2/bot/message/push"); 
+// 	curl_setopt($channel, CURLOPT_POST, true); 
+// 	curl_setopt($channel, CURLOPT_CUSTOMREQUEST, 'POST'); 
+// 	curl_setopt($channel, CURLOPT_RETURNTRANSFER, true); 
+// 	curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($post_data)); 
+// 	curl_setopt($channel, CURLOPT_HTTPHEADER, array( 
+// 	'Content-Type: application/json; charset=UTF-8', 
+// 	'Authorization: Bearer ' . $Channel_Access_Token 
+// 	));
+	
+// 	$result = curl_exec($channel); 
+// 	// var_dump($result); 
+// 	curl_close($channel); 
 
-$mes = 'test';
-
-$response_format = [ 
-"type" => "text", 
-"text" => $mes 
-];
-
-$post_data = [ 
-"to" => $to, 
-"messages" => [$response_format] 
-];
-
-//post 
-$channel = curl_init("https://api.line.me/v2/bot/message/push"); 
-curl_setopt($channel, CURLOPT_POST, true); 
-curl_setopt($channel, CURLOPT_CUSTOMREQUEST, 'POST'); 
-curl_setopt($channel, CURLOPT_RETURNTRANSFER, true); 
-curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($post_data)); 
-curl_setopt($channel, CURLOPT_HTTPHEADER, array( 
-'Content-Type: application/json; charset=UTF-8', 
-'Authorization: Bearer ' . $Channel_Access_Token 
-));
-
-$result = curl_exec($channel); 
-// var_dump($result); 
-curl_close($channel); 
-
-
-
-//---
-//pushTextMessage($bot, $userId, "Hello World!");
-// $response = $bot->pushMessage('Udeadbeefdeadbeefdeadbeefdeadbeef', new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("Hello World!"));
-// if(!$response->isSucceeded()) {
-// 	//エラー内容を出力
-// 	error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
-// }
 
 ?>
