@@ -8,9 +8,14 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS
 // CurlHTTPClientとシークレットを使いLINEBotをインスタンス化
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 
-$userId = "Udeadbeefdeadbeefdeadbeefdeadbeef";
-error_log($userId);
-pushTextMessage($bot, $userId, "Hello World!");
+$userId = 'Udeadbeefdeadbeefdeadbeefdeadbeef';
+// error_log($userId);
+//pushTextMessage($bot, $userId, "Hello World!");
+$response = $bot->pushMessage('Udeadbeefdeadbeefdeadbeefdeadbeef', new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("Hello World!"));
+if(!$response->isSucceeded()) {
+	//エラー内容を出力
+	error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
+}
 
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
