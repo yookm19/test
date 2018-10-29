@@ -11,19 +11,19 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET
 // LINE Messaging APIがリクエストに付与した署名を取得
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader ::LINE_SIGNATURE];
 							
-// 署名が正当かチェック。正当であればリクエストをパースし配列へ
-// 不正であれば例外の内容を出力
-// try {
-//   $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
-// } catch(\LINE\LINEBot\Exception\InvalidSignatureException $e) {
-//   error_log('parseEventRequest failed. InvalidSignatureException => '.var_export($e, true));
-// } catch(\LINE\LINEBot\Exception\UnknownEventTypeException $e) {
-//   error_log('parseEventRequest failed. UnknownEventTypeException => '.var_export($e, true));
-// } catch(\LINE\LINEBot\Exception\UnknownMessageTypeException $e) { 
-//   error_log('parseEventRequest failed. UnknownMessageTypeException => '.var_export($e, true));
-// } catch(\LINE\LINEBot\Exception\InvalidEventRequestException $e) {
-//   error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
-// }
+署名が正当かチェック。正当であればリクエストをパースし配列へ
+不正であれば例外の内容を出力
+try {
+  $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
+} catch(\LINE\LINEBot\Exception\InvalidSignatureException $e) {
+  error_log('parseEventRequest failed. InvalidSignatureException => '.var_export($e, true));
+} catch(\LINE\LINEBot\Exception\UnknownEventTypeException $e) {
+  error_log('parseEventRequest failed. UnknownEventTypeException => '.var_export($e, true));
+} catch(\LINE\LINEBot\Exception\UnknownMessageTypeException $e) { 
+  error_log('parseEventRequest failed. UnknownMessageTypeException => '.var_export($e, true));
+} catch(\LINE\LINEBot\Exception\InvalidEventRequestException $e) {
+  error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
+}
 
 $midFile = __DIR__ . "/files/mids";
 
@@ -99,31 +99,6 @@ foreach ($events as $event) {
   // $userId = "Udeadbeefdeadbeefdeadbeefdeadbeef";
   error_log($userId);
   pushTextMessage($bot, $userId, "Hello World!");
-
-  // $body = json_encode(
-  //   array(
-  //     "to" => array_values($mids),
-  //     "toChannel" => 1383378250,
-  //     "eventType" => $events,
-  //     "content" => array(
-  //       "messageNotified" => 0,
-  //       "messages" => $messages,
-  //     ),
-  //   )
-  // );
-
-  // $ch = curl_init();
-  // curl_setopt($ch, CURLOPT_URL, "https://trial-api.line.me/v1/events");
-  // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-  //   "Content-Type: application/json; charset=UTF-8",
-  //   "X-Line-ChannelID: 1616806503",
-  //   "X-Line-ChannelSecret: 4e84d3f2177af51fdb6d50a64fdfc58f",
-  //   "X-Line-Trusted-User-With-ACL: /Syc1LLNgaD9peKYbkWMSKoWZqei8OgEWB25aRS+8tHWZHECOL/qyORPmNlJ+YUodxQMX1Rl6oBwGsTQuA63PsDdfZTPkbTuaieMYVGrxinbzH/yVwCmN7C8HiRCnYwwYS+VINtw5m0g022Rd2PPxAdB04t89/1O/w1cDnyilFU=",
-  // ));
-
-  // curl_setopt($ch, CURLOPT_POST, 1);
-  // curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-  // $result = curl_exec($ch);
 
 }
 
